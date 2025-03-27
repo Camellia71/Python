@@ -18,4 +18,12 @@
 #  x=str(input())
 #  print("地区编号：",x[1:6])
 #  print("出生日期：",x[-12:-5])
-print("hello world")
+# print("hello world")
+# pip install numpy pandas scikit-learn matplotlib
+
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+import matplotlib.pyplot as plt
+
+print("所有库导入成功！")
