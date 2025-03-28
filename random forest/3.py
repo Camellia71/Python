@@ -1,44 +1,9 @@
-# import pandas as pd
-# from sklearn.model_selection import train_test_split
-# from sklearn.ensemble import RandomForestRegressor
-# from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-# from sklearn.preprocessing import OneHotEncoder
-# from sklearn.compose import ColumnTransformer
-# from sklearn.pipeline import Pipeline
-# import matplotlib.pyplot as plt
 
-# # 1. 加载真实数据
-# data = pd.read_csv("drone_data.csv")  # 替换为你的文件路径
-
-# # 2. 数据预处理
-# X = data.drop('flight_time', axis=1)
-# y = data['flight_time']
-
-# # 3. 划分训练集和测试集
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# # 4. 预处理管道
-# preprocessor = ColumnTransformer(
-#     transformers=[
-#         ('num', 'passthrough', ['temperature', 'altitude']),
-#         ('cat', OneHotEncoder(), ['environment_type'])
-#     ])
-
-# # 5. 创建模型
-# model = Pipeline(steps=[
-#     ('preprocessor', preprocessor),
-#     ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))
-# ])
-
-# # 6. 训练模型
-# model.fit(X_train, y_train)
-
-# # 7. 评估模型（后续代码与原代码一致）
-# # ...
 
 # 随机森林模型预测无人机续航时间（使用真实数据）
 import numpy as np
 import pandas as pd
+from itertools import product
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
@@ -52,7 +17,7 @@ import joblib  # 用于保存和加载模型
 try:
     # 支持CSV或Excel格式
     # data = pd.read_csv("drone_flight_data.csv")  # 方法1：从CSV加载
-    data = pd.read_excel("Python\random forest\城市类型（1）.xlsx")  # 方法2：从Excel加载
+    data = pd.read_excel("E:\张岐奕1\EPI\github\Python\\random forest\\random.xlsx")  # 方法2：从Excel加载
 except FileNotFoundError:
     print("错误：未找到数据文件！请检查文件路径")
     exit()
@@ -142,17 +107,26 @@ print("\n已保存特征重要性图表：feature_importance.png")
 joblib.dump(model, "drone_flight_time_predictor.pkl")
 print("\n已保存训练好的模型：drone_flight_time_predictor.pkl")
 
+
+from itertools import product
 # 9. 使用模型进行新数据预测
-new_data = pd.DataFrame({
-    'temperature': [25, 10, -5],  # 温度(℃)
-    'altitude': [100, 1500, 2500],  # 海拔(m)
-    'environment_type': ['urban', 'mountain', 'rural']  # 环境类型
-})
+temperatures = [-15, -10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40]
+altitudes = [0, 500, 1000, 1500, 2000, 2500, 3000]
+environments = ['urban', 'forest', 'grassland']
 
+# 生成所有组合
+combinations = list(product(temperatures, altitudes, environments))
+new_data = pd.DataFrame(combinations, columns=['temperature', 'altitude', 'environment_type'])
+
+# 预测并打印结果
 predicted_times = model.predict(new_data)
-print("\n新数据预测结果：")
-for i, row in new_data.iterrows():
-    print(f"情况{i+1}: 温度={row['temperature']}℃, 海拔={row['altitude']}m, 环境={row['environment_type']} → 预测续航: {predicted_times[i]:.1f} 分钟")
+print("\n新数据预测结果（前10条）：")
+for i in range(10):  # 仅显示前10条结果
+    row = new_data.iloc[i]
+    print(f"组合{i+1}: 温度={row['temperature']}℃, 海拔={row['altitude']}m, 环境={row['environment_type']} → 预测续航: {predicted_times[i]:.1f} 分钟")
 
-# 显示图表（如果是在Jupyter Notebook中运行）
-plt.show()
+# 保存所有预测结果到CSV（可选）
+results = new_data.copy()
+results['predicted_flight_time'] = predicted_times
+results.to_csv("all_predictions.csv", index=False)
+print("\n已保存所有预测结果到: all_predictions.csv")
