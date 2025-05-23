@@ -21,9 +21,51 @@
 # print("hello world")
 # pip install numpy pandas scikit-learn matplotlib
 
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-import matplotlib.pyplot as plt
+# import numpy as np
+# import pandas as pd
+# from sklearn.ensemble import RandomForestRegressor
+# import matplotlib.pyplot as plt
 
-print("所有库导入成功！")
+# print("所有库导入成功！")
+
+# temp = 1
+# if not(temp > 10):
+#     print("太冷了！")
+# else:
+#     print("明天见！")
+# temp = 1
+# if temp > 10:
+#     print("太冷了！")
+# print("明天见！")
+
+# temp = 1
+# if not(temp > 10):
+#     print("太冷了！")
+# else:
+#     print("明天见！")
+# temp = 1
+# if temp < 10:
+#     print("太冷了！")
+# else:
+#     print("明天见！")
+# temp = 1
+# if temp > 10:
+#     print("太冷了！")
+#     print("明天见！")
+# temp = 1
+# if temp > 10:
+#     print("太冷了！")
+# print("明天见！")
+# s=0
+# a,b=1,2
+# if a>0:
+#     s=s+1
+# elif b>0:
+#     s=s+1
+# print(s)
+def Foo(x):
+ if (x==1):
+  return 1
+ else:
+  return x+Foo(x-1)
+print(Foo(4))
