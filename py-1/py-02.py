@@ -51,15 +51,22 @@
 # else:
 #     print("No")
 
-s=input()
-letter_count=0
-digit_count=0
-other_count=0
-for char in s:
-    if 'a' <= char.lower() <= 'z':
-        letter_count +=1
-    elif '0' <= char <= '9':
-        digit_count +=1
-    else:
-        other_count +=1
-print(f"英文字母{letter_count}个，数字字符{digit_count}个，其他字符{other_count}个")
+# s=input()
+# letter_count=0
+# digit_count=0
+# other_count=0
+# for char in s:
+#     if 'a' <= char.lower() <= 'z':
+#         letter_count +=1
+#     elif '0' <= char <= '9':
+#         digit_count +=1
+#     else:
+#         other_count +=1
+# print(f"英文字母{letter_count}个，数字字符{digit_count}个，其他字符{other_count}个")
+
+x = 0
+while x<10:
+    if x%2 == 1:
+        continue
+    x = x + 1
+    print(x)

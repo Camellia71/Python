@@ -1,5 +1,4 @@
-#  x,y,z=eval(input('please input the number of x,y,z'))
-#  sum = x+y+z
+
 #  aver=sum/3.0
 
 #  str1='SDUTCSSEno1'
@@ -57,15 +56,26 @@
 #     print("太冷了！")
 # print("明天见！")
 # s=0
-# a,b=1,2
-# if a>0:
-#     s=s+1
-# elif b>0:
-#     s=s+1
-# print(s)
-def Foo(x):
- if (x==1):
-  return 1
- else:
-  return x+Foo(x-1)
-print(Foo(4))
+# # a,b=1,2
+# # if a>0:
+# #     s=s+1
+# # elif b>0:
+# #     s=s+1
+# # print(s)
+# def Foo(x):
+#  if (x==1):
+#   return 1
+#  else:
+#   return x+Foo(x-1)
+# print(Foo(4))
+
+# print("输出结果是{:3.2f}".format(12.345))
+# def foo(x1,x2=3,x3=5):
+#     foo(2,7)
+
+x = 0
+while x<10:
+    if x%2 == 1:
+        continue
+    x = x + 1
+    print(x)
