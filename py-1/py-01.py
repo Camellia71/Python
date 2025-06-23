@@ -73,9 +73,52 @@
 # def foo(x1,x2=3,x3=5):
 #     foo(2,7)
 
-x = 0
-while x<10:
-    if x%2 == 1:
-        continue
-    x = x + 1
-    print(x)
+# x = 0
+# while x<10:
+#     if x%2 == 1:
+#         continue
+#     x = x + 1
+#     print(x)
+# def median(aList):
+#     # number = list(aList)
+#     # number = [int(x) for x in aList]
+#     number = []
+#     for x in aList:
+#         number.append(int(x))
+#     number.sort()
+#     n = len(number) 
+#     if n % 2 != 0:
+#         return number[n//2]
+#     else:
+#         mid1 = number[(n // 2)- 1]
+#         mid2 = number[n // 2]
+#         return (mid1+mid2)/2
+
+# def main():
+#     age = list(input().split())
+#     print(median(age))
+        
+# main()
+# def prime(num):
+#     if num < 2:
+#         return False
+#     else:
+#         for i in range(2,int(num**0.5)+1):
+#             if num % i == 0:
+#                 return False
+#     return True
+# n =  int(input())
+# for i in range(n-1,1,-1):
+#     if prime(i):
+#         print(i)
+#         break
+# n = int(input())
+# longest = input()
+# for i in range(1,n-1):
+#     s = input()
+#     if len(s) > len(longest):
+#         longest = s
+# longest = "111"
+# print(f"最长的是:{longest}")
+n = int(input())
+print(n)
