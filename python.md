@@ -319,3 +319,36 @@ def n(i):
 	return s
 ```
 
+##### 2.函数的传递参数
+
+```python
+def n(x,y = 10):
+	return(x * y)
+print(n(10))
+#100
+print(n(10,2))
+#20
+```
+
+##### 3.全局变量和局部变量
+
+如果要在函数内部使用全局变量，则要在函数内加global
+
+```python
+n = 2
+def tn(x,y):
+	global n
+	return n * x * y
+print(tn(2,3))
+```
+
+##### 4.临时函数
+
+lambda函数，又被称为匿名函数，代表临时使用的简单函数
+
+```python
+f = lambda x,y,z:x+y+z
+f(10,20,30)
+#60
+```
+
