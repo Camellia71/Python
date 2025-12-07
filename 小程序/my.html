@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>速联校园 - 我的</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+        
+        /* 顶部用户信息 */
+        .user-profile {
+            background-color: #1296db;
+            color: white;
+            padding: 25px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(18, 150, 219, 0.2);
+        }
+        
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-info h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .user-info p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 功能卡片 */
+        .function-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1296db;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        /* 功能列表 */
+        .function-list {
+            list-style: none;
+        }
+        
+        .function-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .function-item:last-child {
+            border-bottom: none;
+        }
+        
+        .function-name {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+        
+        .function-name img {
+            width: 22px;
+            height: 22px;
+            margin-right: 10px;
+        }
+        
+        .function-value {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .arrow-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.5;
+        }
+        
+        /* 底部导航 */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .nav-item.active {
+            color: #1296db;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+        
+        /* 响应式调整 */
+        @media (min-width: 375px) {
+            .user-profile {
+                padding: 30px 25px;
+            }
+            
+            .avatar {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        @media (min-width: 414px) {
+            .user-profile {
+                padding: 35px 30px;
+            }
+            
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部用户信息 -->
+    <div class="user-profile">
+        <div class="avatar">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6bTAgMTQuMmMtMi41IDAtNC43MS0xLjI4LTYtMy4yMi4wMy0xLjk5IDQtMy4wOCA2LTMuMDggMS45OSAwIDUuOTcgMS4wOSA2IDMuMDgtMS4yOSAxLjk0LTMuNSAzLjIyLTYgMy4yMnoiLz48L3N2Zz4=" alt="用户头像">
+        </div>
+        <div class="user-info">
+            <h2>张三同学</h2>
+            <p>西安邮电大学 · 计算机学院</p>
+        </div>
+    </div>
+    
+    <!-- 我的订单 -->
+    <div class="function-card">
+        <div class="card-title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTE5LjUgMTYuNWEyLjUgMi41IDAgMDEtMi41IDIuNWEyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6bS0xMyAwYTIuNSAyLjUgMCAwMS0yLjUgMi41IDIuNSAyLjUgMCAwMS0yLjUtMi41IDIuNSAyLjUgMCAwMTIuNS0yLjUgMi41IDIuNSAwIDAxMi41IDIuNXptMTUgMGEyLjUgMi41IDAgMDEtMi41IDIuNSAyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6Ii8+PC9zdmc+" alt="订单">
+            <span>我的订单</span>
+        </div>
+        <ul class="function-list">
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTIwIDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yem0wIDEySDZWNmg0djRINnYyaDJ2NGgtMnYyaDEwdi0yeiIvPjwvc3ZnPg==" alt="待付款">
+                    <span>待付款</span>
+                </span>
+                <span class="function-value">2</span>
+            </li>
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMj200MC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTE5LjUgMTYuNWEyLjUgMi41IDAgMDEtMi41IDIuNWEyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6bS0xMyAwYTIuNSAyLjUgMCAwMS0yLjUgMi41IDIuNSAyLjUgMCAwMS0yLjUtMi41IDIuNSAyLjUgMCAwMTIuNS0yLjUgMi41IDIuNSAwIDAxMi41IDIuNXptMTUgMGEyLjUgMi41IDAgMDEtMi41IDIuNSAyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6Ii8+PC9zdmc+" alt="进行中">
+                    <span>进行中</span>
+                </span>
+                <span class="function-value">1</span>
+            </li>
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxTDkgMTYuMTd6Ii8+PC9zdmc+" alt="已完成">
+                    <span>已完成</span>
+                </span>
+                <span class="function-value">5</span>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 我的钱包 -->
+    <div class="function-card">
+        <div class="card-title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTIwIDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yem0wIDEzSDVWNmgydjRIMnYyaDJ2NGgtMnYyaDE0di0yeiIvPjwvc3ZnPg==" alt="钱包">
+            <span>我的钱包</span>
+        </div>
+        <ul class="function-list">
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiMxMjk2ZGIiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" alt="余额">
+                    <span>账户余额</span>
+                </span>
+                <span class="function-value">¥128.50</span>
+            </li>
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiMxMjk2ZGIiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" alt="优惠券">
+                    <span>优惠券</span>
+                </span>
+                <span class="function-value">3张</span>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 设置 -->
+    <div class="function-card">
+        <div class="card-title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTE5LjQzIDEyLjk4Yy4wNC0uMzIuMDctLjY0LjA3LS45OHMtLjAzLS42Ni0uMDctLjk4bDIuMTEtMS42NWMuMTktLjE1LjI0LS40Mi4xMi0uNjRsLTIuMDItMy40NmMtLjEyLS4yMi0uMzktLjMtLjYxLS4yMmwtMi40OSAxYy0uNTItLjQtMS4wOC0uNzMtMS42OS0uOThsLS4zOC0yLjY1QzE0LjQ2IDIuMTggMTQuMjUgMiAxNCAyaC00Yy0uMjUgMC0uNDYuMTgtLjQ5LjQybC0uMzggMi42NWMtLjYxLjI1LTEuMTcuNTktMS42OS45OGwtMi40OS0xYy0uMjMtLjA5LS40OSAwLS42MS4yMmwtMi4wMyAzLjQ2Yy0uMTMuMjItLjA3LjQ5LjEyLjY0bDIuMTEgMS42NWMtLjA0LjMyLS4wNy42NS0uMDcuOThzLjAzLjY2LjA3Ljk4bC0yLjExIDEuNjVjLS4xOS4xNS0uMjQuNDItLjEyLjY0bDIuMDIgMy40NmMuMTIuMjIuMzkuMy42MS4yMmwzLjQ5LTEuNGMuNTIuNCAxLjA4LjczIDEuNjkuOThsLjM4IDIuNjVjLjAzLjI0LjI0LjQyLjQ5LjQyaDRjLjI1IDAgLjQ2LS4xOC40OS0uNDJsLjM4LTIuNjVjLjYxLS4yNSAxLjE3LS41OSAxLjY5LS45OGwyLjQ5IDEuNGMuMjMuMDkuNDkgMCAuNjEtLjIybDIuMDItMy40NmMuMTItLjIyLjA3LS40OS0uMTItLjY0bC0yLjExLTEuNjV6TTEyIDE1LjVjLTEuOTMgMC0zLjUtMS41Ny0zLjUtMy41czEuNTctMy41IDMuNS0zLjUgMy41IDEuNTcgMy41IDMuNS0xLjU3IDMuNS0zLjUgMy41eiIvPjwvc3ZnPg==" alt="设置">
+            <span>设置</span>
+        </div>
+        <ul class="function-list">
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiMxMjk2ZGIiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" alt="个人信息">
+                    <span>个人信息</span>
+                </span>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTggNWwxMSAxMS0xMSAxMS0xLjQxLTEuNDFMMTYuMTcgMTIgNi41OSAyLjQxIDggNXoiLz48L3N2Zz4=" class="arrow-icon" alt="箭头">
+            </li>
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiMxMjk2ZGIiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" alt="安全设置">
+                    <span>安全设置</span>
+                </span>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTggNWwxMSAxMS0xMSAxMS0xLjQxLTEuNDFMMTYuMTcgMTIgNi41OSAyLjQxIDggNXoiLz48L3N2Zz4=" class="arrow-icon" alt="箭头">
+            </li>
+            <li class="function-item">
+                <span class="function-name">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiMxMjk2ZGIiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" alt="关于我们">
+                    <span>关于我们</span>
+                </span>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTggNWwxMSAxMS0xMSAxMS0xLjQxLTEuNDFMMTYuMTcgMTIgNi41OSAyLjQxIDggNXoiLz48L3N2Zz4=" class="arrow-icon" alt="箭头">
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 底部导航 -->
+    <div class="footer-nav">
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEwIDIwSDV2LTUuNDFMMTguNTkgNC40MWwyLjgyIDIuODJMMTkuNTkgN0w3IDE5LjU5bC0xLjQxLTEuNDEgMS4xOC0xLjE4TDUgMTQuNTlWMjBoNXYtMnoiLz48L3N2Zz4=" class="nav-icon" alt="首页">
+            <span>首页</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTE5LjUgMTYuNWEyLjUgMi41IDAgMDEtMi41IDIuNWEyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6bS0xMyAwYTIuNSAyLjUgMCAwMS0yLjUgMi41IDIuNSAyLjUgMCAwMS0yLjUtMi41IDIuNSAyLjUgMCAwMTIuNS0yLjUgMi41IDIuNSAwIDAxMi41IDIuNXptMTUgMGEyLjUgMi41IDAgMDEtMi41IDIuNSAyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6Ii8+PC9zdmc+" class="nav-icon" alt="订单">
+            <span>订单</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiM4ODgiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" class="nav-icon" alt="消息">
+            <span>消息</span>
+        </div>
+        <div class="nav-item active">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6bTAgMTQuMmMtMi41IDAtNC43MS0xLjI4LTYtMy4yMi4wMy0xLjk5IDQtMy4wOCA2LTMuMDggMS45OSAwIDUuOTcgMS4wOSA2IDMuMDgtMS4yOSAxLjk0LTMuNSAzLjIyLTYgMy4yMnoiLz48L3N2Zz4=" class="nav-icon" alt="我的">
+            <span>我的</span>
+        </div>
+    </div>
+</body>
+</html>

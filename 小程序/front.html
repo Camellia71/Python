@@ -1,0 +1,281 @@
+<!-- pages/express/index.vue -->
+<template>
+    <view class="express-page">
+        <!-- 顶部导航 -->
+        <view class="nav-bar">
+            <view class="nav-title">快递代取</view>
+            <view class="nav-back" @click="navigateBack">
+                <image src="/static/icons/back.png" class="back-icon"></image>
+            </view>
+        </view>
+
+        <!-- 取件信息表单 -->
+        <view class="form-card">
+            <view class="form-item">
+                <text class="form-label">取件码</text>
+                <input class="form-input" placeholder="请输入快递取件码" v-model="pickupCode" />
+            </view>
+
+            <view class="form-item">
+                <text class="form-label">快递点</text>
+                <picker mode="selector" :range="locations" @change="handleLocationChange">
+                    <view class="picker">
+                        {{selectedLocation || '请选择快递点'}}
+                    </view>
+                </picker>
+            </view>
+
+            <view class="form-item">
+                <text class="form-label">送达地点</text>
+                <input class="form-input" placeholder="例：3号宿舍楼201室" v-model="deliveryAddress" />
+            </view>
+
+            <view class="form-item">
+                <text class="form-label">备注</text>
+                <textarea class="form-textarea" placeholder="可填写特殊要求（如：晚上8点后送达）" v-model="remark" />
+            </view>
+        </view>
+
+        <!-- 价格展示 -->
+        <view class="price-card">
+            <view class="price-row">
+                <text>基础服务费</text>
+                <text>¥3.00</text>
+            </view>
+            <view class="price-row">
+                <text>加急服务</text>
+                <switch color="#1296db" @change="handleUrgentChange" />
+            </view>
+            <view class="price-divider"></view>
+            <view class="price-total">
+                <text>合计</text>
+                <text class="total-price">¥{{totalPrice}}</text>
+            </view>
+        </view>
+
+        <!-- 提交按钮 -->
+        <view class="submit-btn" @click="handleSubmit">
+            <text>立即下单</text>
+        </view>
+    </view>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                pickupCode: '',
+                selectedLocation: '',
+                deliveryAddress: '',
+                remark: '',
+                isUrgent: false,
+                locations: [
+                    '近邻宝1号柜',
+                    '菜鸟驿站（东区）',
+                    '邮政快递点',
+                    '京东派'
+                ]
+            }
+        },
+        computed: {
+            totalPrice() {
+                return this.isUrgent ? '5.00' : '3.00'
+            }
+        },
+        methods: {
+            navigateBack() {
+                uni.navigateBack()
+            },
+            handleLocationChange(e) {
+                this.selectedLocation = this.locations[e.detail.value]
+            },
+            handleUrgentChange(e) {
+                this.isUrgent = e.detail.value
+            },
+            handleSubmit() {
+                if (!this.validateForm()) return
+
+                uni.showLoading({
+                    title: '提交中...'
+                })
+
+                // 实际开发中这里调用API提交订单
+                setTimeout(() => {
+                    uni.hideLoading()
+                    uni.showToast({
+                        title: '下单成功',
+                        icon: 'success'
+                    })
+                    this.resetForm()
+                }, 1500)
+            },
+            validateForm() {
+                if (!this.pickupCode) {
+                    uni.showToast({
+                        title: '请输入取件码',
+                        icon: 'none'
+                    })
+                    return false
+                }
+                if (!this.selectedLocation) {
+                    uni.showToast({
+                        title: '请选择快递点',
+                        icon: 'none'
+                    })
+                    return false
+                }
+                if (!this.deliveryAddress) {
+                    uni.showToast({
+                        title: '请输入送达地点',
+                        icon: 'none'
+                    })
+                    return false
+                }
+                return true
+            },
+            resetForm() {
+                this.pickupCode = ''
+                this.selectedLocation = ''
+                this.deliveryAddress = ''
+                this.remark = ''
+                this.isUrgent = false
+            }
+        }
+    }
+</script>
+
+<style>
+    .express-page {
+        padding: 0 25rpx;
+        background-color: #f8f8f8;
+        min-height: 100vh;
+    }
+
+    .nav-bar {
+        position: relative;
+        height: 90rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20rpx;
+    }
+
+    .nav-title {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .nav-back {
+        position: absolute;
+        left: 0;
+        width: 80rpx;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-icon {
+        width: 40rpx;
+        height: 40rpx;
+    }
+
+    .form-card {
+        background-color: #fff;
+        border-radius: 16rpx;
+        padding: 30rpx;
+        margin-bottom: 25rpx;
+        box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+    }
+
+    .form-item {
+        margin-bottom: 35rpx;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 30rpx;
+        color: #333;
+        margin-bottom: 15rpx;
+        font-weight: 500;
+    }
+
+    .form-input,
+    .picker {
+        width: 100%;
+        height: 80rpx;
+        padding: 0 25rpx;
+        border: 1rpx solid #e6e6e6;
+        border-radius: 8rpx;
+        font-size: 28rpx;
+        background-color: #fafafa;
+    }
+
+    .picker {
+        display: flex;
+        align-items: center;
+        color: #666;
+    }
+
+    .form-textarea {
+        width: 100%;
+        height: 150rpx;
+        padding: 20rpx;
+        border: 1rpx solid #e6e6e6;
+        border-radius: 8rpx;
+        font-size: 28rpx;
+        background-color: #fafafa;
+    }
+
+    .price-card {
+        background-color: #fff;
+        border-radius: 16rpx;
+        padding: 30rpx;
+        margin-bottom: 40rpx;
+        box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+    }
+
+    .price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25rpx;
+        font-size: 30rpx;
+    }
+
+    .price-divider {
+        height: 1rpx;
+        background-color: #f0f0f0;
+        margin: 25rpx 0;
+    }
+
+    .price-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 32rpx;
+        font-weight: bold;
+    }
+
+    .total-price {
+        color: #1296db;
+    }
+
+    .submit-btn {
+        width: 100%;
+        height: 90rpx;
+        line-height: 90rpx;
+        text-align: center;
+        background-color: #1296db;
+        color: #fff;
+        font-size: 32rpx;
+        font-weight: 500;
+        border-radius: 45rpx;
+        box-shadow: 0 8rpx 16rpx rgba(18, 150, 219, 0.3);
+    }
+
+    /* 处理picker的样式 */
+    uni-picker-view {
+        width: 100%;
+    }
+</style>

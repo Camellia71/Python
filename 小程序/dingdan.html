@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>速联校园 - 我的订单</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+        
+        /* 顶部导航 */
+        .header {
+            position: relative;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: #1296db;
+            color: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(18, 150, 219, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* 订单筛选 */
+        .order-filter {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-item {
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        
+        .filter-item.active {
+            background-color: #1296db;
+            color: white;
+        }
+        
+        /* 订单列表 */
+        .order-list {
+            margin: 0 15px;
+        }
+        
+        .order-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-number {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .order-status {
+            font-size: 14px;
+            color: #1296db;
+            font-weight: 600;
+        }
+        
+        .order-content {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .order-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .order-info {
+            flex: 1;
+        }
+        
+        .order-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .order-time {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .order-price {
+            font-size: 16px;
+            color: #1296db;
+            font-weight: 600;
+        }
+        
+        .order-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .order-btn {
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-left: 10px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        
+        .primary-btn {
+            background-color: #1296db;
+            color: white;
+            border: none;
+        }
+        
+        /* 底部导航 */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .nav-item.active {
+            color: #1296db;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xNS40MSAxNkwxMCAxMC41OSAxNC41OSA2IDE2IDcuNDEgMTEuNDEgMTJMMTYgMTYuNTl6Ii8+PC9zdmc+" class="back-btn" alt="返回">
+        <h1>我的订单</h1>
+    </div>
+    
+    <!-- 订单筛选 -->
+    <div class="order-filter">
+        <div class="filter-item active">全部</div>
+        <div class="filter-item">待付款</div>
+        <div class="filter-item">进行中</div>
+        <div class="filter-item">已完成</div>
+    </div>
+    
+    <!-- 订单列表 -->
+    <div class="order-list">
+        <!-- 订单1 -->
+        <div class="order-card">
+            <div class="order-header">
+                <span class="order-number">订单号: SL20230501001</span>
+                <span class="order-status">待付款</span>
+            </div>
+            <div class="order-content">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=快递代取" class="order-image" alt="服务图片">
+                <div class="order-info">
+                    <div class="order-title">快递代取服务</div>
+                    <div class="order-time">2023-05-01 10:30</div>
+                    <div class="order-price">¥3.00</div>
+                </div>
+            </div>
+            <div class="order-footer">
+                <button class="order-btn">取消订单</button>
+                <button class="order-btn primary-btn">立即支付</button>
+            </div>
+        </div>
+        
+        <!-- 订单2 -->
+        <div class="order-card">
+            <div class="order-header">
+                <span class="order-number">订单号: SL20230501002</span>
+                <span class="order-status">进行中</span>
+            </div>
+            <div class="order-content">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=外卖帮送" class="order-image" alt="服务图片">
+                <div class="order-info">
+                    <div class="order-title">外卖帮送服务</div>
+                    <div class="order-time">2023-05-01 11:15</div>
+                    <div class="order-price">¥4.00</div>
+                </div>
+            </div>
+            <div class="order-footer">
+                <button class="order-btn">联系帮手</button>
+                <button class="order-btn primary-btn">查看进度</button>
+            </div>
+        </div>
+        
+        <!-- 订单3 -->
+        <div class="order-card">
+            <div class="order-header">
+                <span class="order-number">订单号: SL20230501003</span>
+                <span class="order-status">已完成</span>
+            </div>
+            <div class="order-content">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=文件传递" class="order-image" alt="服务图片">
+                <div class="order-info">
+                    <div class="order-title">文件传递服务</div>
+                    <div class="order-time">2023-05-01 14:20</div>
+                    <div class="order-price">¥5.00</div>
+                </div>
+            </div>
+            <div class="order-footer">
+                <button class="order-btn">再次下单</button>
+                <button class="order-btn primary-btn">评价服务</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航 -->
+    <div class="footer-nav">
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEwIDIwSDV2LTUuNDFMMTguNTkgNC40MWwyLjgyIDIuODJMMTkuNTkgN0w3IDE5LjU5bC0xLjQxLTEuNDEgMS4xOC0xLjE4TDUgMTQuNTlWMjBoNXYtMnoiLz48L3N2Zz4=" class="nav-icon" alt="首页">
+            <span>首页</span>
+        </div>
+        <div class="nav-item active">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTE5LjUgMTYuNWEyLjUgMi41IDAgMDEtMi41IDIuNWEyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6bS0xMyAwYTIuNSAyLjUgMCAwMS0yLjUgMi41IDIuNSAyLjUgMCAwMS0yLjUtMi41IDIuNSAyLjUgMCAwMTIuNS0yLjUgMi41IDIuNSAwIDAxMi41IDIuNXptMTUgMGEyLjUgMi41IDAgMDEtMi41IDIuNSAyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6Ii8+PC9zdmc+" class="nav-icon" alt="订单">
+            <span>订单</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiM4ODgiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" class="nav-icon" alt="消息">
+            <span>消息</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6bTAgMTQuMmMtMi41IDAtNC43MS0xLjI4LTYtMy4yMi4wMy0xLjk5IDQtMy4wOCA2LTMuMDggMS45OSAwIDUuOTcgMS4wOSA2IDMuMDgtMS4yOSAxLjk0LTMuNSAzLjIyLTYgMy4yMnoiLz48L3N2Zz4=" class="nav-icon" alt="我的">
+            <span>我的</span>
+        </div>
+    </div>
+</body>
+</html>

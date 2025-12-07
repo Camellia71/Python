@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>速联校园 - 快递代取服务</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 20px;
+        }
+        
+        /* 容器样式 */
+        .container {
+            max-width: 100%;
+            padding: 15px;
+        }
+        
+        /* 顶部导航 */
+        .header {
+            position: relative;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: #1296db;
+            color: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(18, 150, 219, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 搜索框 */
+        .search-box {
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: none;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+        }
+        
+        /* 服务分类 */
+        .service-categories {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .category-item {
+            width: 23%;
+            margin-bottom: 15px;
+            text-align: center;
+            background-color: white;
+            padding: 12px 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        
+        .category-item:active {
+            transform: scale(0.95);
+        }
+        
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+        }
+        
+        .category-item span {
+            font-size: 13px;
+            color: #333;
+            display: block;
+        }
+        
+        /* 热门服务 */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .section-title span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .section-title .more {
+            font-size: 13px;
+            color: #1296db;
+        }
+        
+        .hot-services {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .hot-services::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .service-card {
+            width: 150px;
+            margin-right: 15px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        .service-info {
+            padding: 12px;
+        }
+        
+        .service-name {
+            font-size: 14px;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .service-price {
+            font-size: 14px;
+            color: #1296db;
+            font-weight: 600;
+        }
+        
+        /* 活动横幅 */
+        .banner {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .banner img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* 服务表单 */
+        .service-form {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+        
+        .form-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1296db;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #f9f9f9;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #f9f9f9;
+            resize: none;
+        }
+        
+        /* 价格展示 */
+        .price-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .price-divider {
+            height: 1px;
+            background-color: #f0f0f0;
+            margin: 15px 0;
+        }
+        
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 17px;
+            font-weight: 600;
+        }
+        
+        .total-price {
+            color: #1296db;
+        }
+        
+        /* 提交按钮 */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #1296db;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(18, 150, 219, 0.3);
+            transition: background-color 0.2s;
+        }
+        
+        .submit-btn:active {
+            background-color: #0d7ebd;
+        }
+        
+        /* 底部导航 */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .nav-item.active {
+            color: #1296db;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+        
+        /* 响应式调整 */
+        @media (min-width: 375px) {
+            .service-card {
+                width: 160px;
+            }
+            
+            .service-image {
+                height: 110px;
+            }
+        }
+        
+        @media (min-width: 414px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .service-card {
+                width: 180px;
+            }
+            
+            .service-image {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <div class="header">
+            <h1>速联校园</h1>
+            <p>专业校园服务，让生活更便捷</p>
+        </div>
+        
+        <!-- 搜索框 -->
+        <div class="search-box">
+            <input type="text" placeholder="搜索服务...">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6Ii8+PC9zdmc+" class="search-icon" alt="搜索">
+        </div>
+        
+        <!-- 服务分类 -->
+        <div class="service-categories">
+            <div class="category-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTIwIDZINmMtMS4xIDAtMiAuOS0yIDJ2MTBjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMlY4YzAtMS4xLS45LTItMi0yem0wIDEySDZWNmgydjRIMnYyaDJ2NGgtMnYyaDE0di0yeiIvPjwvc3ZnPg==" class="category-icon" alt="快递">
+                <span>快递代取</span>
+            </div>
+            <div class="category-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTE4LjA2IDIyLjk5bC0xLjQxLTEuNDFjLTEuNDEuOTgtMy4wNyAxLjU0LTQuODIgMS41NC01LjUyIDAtMTAtNC40OC0xMC0xMHM0LjQ4LTEwIDEwLTEwIDEwIDQuNDggMTAgMTBjMCAxLjc1LS41NiAzLjQxLTEuNTQgNC44M2wxLjQxIDEuNDEtMS40MiAxLjQxek0xMiAyMGM0LjQxIDAgOC0zLjU5IDgtOHMtMy41OS04LTgtOC04IDMuNTktOCA4IDMuNTkgOCA4IDh6Ii8+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEyIDEwbC0xLjQxIDEuNDFMMTYuMTcgMTdsMS40MS0xLjQxLTEyLTEyLTEuNDEgMS40MSA4LjU4IDguNTh6Ii8+PC9zdmc+" class="category-icon" alt="外卖">
+                <span>外卖帮送</span>
+            </div>
+            <div class="category-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTE0IDJINmMtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMlY4bC02LTZ6bTIgMThINlY0aDd2NWg1djl6Ii8+PC9zdmc+" class="category-icon" alt="文件">
+                <span>文件传递</span>
+            </div>
+            <div class="category-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTIwIDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yem0wIDE0SDRWNmg0djRINnYyaDJ2NGgtMnYyaDEwdi0yeiIvPjwvc3ZnPg==" class="category-icon" alt="闲置">
+                <span>闲置交易</span>
+            </div>
+        </div>
+        
+        <!-- 热门服务 -->
+        <div class="section-title">
+            <span>热门服务</span>
+            <span class="more">查看更多 ></span>
+        </div>
+        
+        <div class="hot-services">
+            <div class="service-card">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=快递代取" class="service-image" alt="快递代取">
+                <div class="service-info">
+                    <span class="service-name">快递代取（3公里内）</span>
+                    <span class="service-price">¥3.00</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=食堂带饭" class="service-image" alt="食堂带饭">
+                <div class="service-info">
+                    <span class="service-name">食堂带饭（午间时段）</span>
+                    <span class="service-price">¥4.00</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=教材代购" class="service-image" alt="教材代购">
+                <div class="service-info">
+                    <span class="service-name">教材代购（校内配送）</span>
+                    <span class="service-price">¥5.00</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/150x100/1296db/ffffff?text=文件打印" class="service-image" alt="文件打印">
+                <div class="service-info">
+                    <span class="service-name">文件打印（A4黑白）</span>
+                    <span class="service-price">¥0.5/页</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 活动横幅 -->
+        <div class="banner">
+            <img src="https://via.placeholder.com/600x200/1296db/ffffff?text=新用户首单免费" alt="活动横幅">
+        </div>
+        
+        <!-- 服务表单 -->
+        <div class="service-form">
+            <div class="form-title">发布代取需求</div>
+            <div class="form-group">
+                <label for="pickup-code" class="form-label">取件码</label>
+                <input type="text" id="pickup-code" class="form-input" placeholder="请输入快递取件码">
+            </div>
+            <div class="form-group">
+                <label for="location" class="form-label">快递点</label>
+                <select id="location" class="form-input">
+                    <option value="">请选择快递点</option>
+                    <option value="1">近邻宝1号柜</option>
+                    <option value="2">菜鸟驿站（东区）</option>
+                    <option value="3">邮政快递点</option>
+                    <option value="4">京东派</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="delivery-address" class="form-label">送达地点</label>
+                <input type="text" id="delivery-address" class="form-input" placeholder="例如：3号宿舍楼201室">
+            </div>
+            <div class="form-group">
+                <label for="remark" class="form-label">备注</label>
+                <textarea id="remark" class="form-textarea" placeholder="可填写特殊要求（如：晚上8点后送达）"></textarea>
+            </div>
+        </div>
+        
+        <!-- 价格展示 -->
+        <div class="price-card">
+            <div class="price-row">
+                <span>基础服务费</span>
+                <span>¥3.00</span>
+            </div>
+            <div class="price-row">
+                <span>加急服务</span>
+                <span>+¥2.00</span>
+            </div>
+            <div class="price-divider"></div>
+            <div class="price-row price-total">
+                <span>合计</span>
+                <span class="total-price">¥5.00</span>
+            </div>
+        </div>
+        
+        <!-- 提交按钮 -->
+        <button class="submit-btn">立即下单</button>
+    </div>
+    
+    <!-- 底部导航 -->
+    <div class="footer-nav">
+        <div class="nav-item active">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzEyOTZkYiIgZD0iTTEwIDIwSDV2LTUuNDFMMTguNTkgNC40MWwyLjgyIDIuODJMMTkuNTkgN0w3IDE5LjU5bC0xLjQxLTEuNDEgMS4xOC0xLjE4TDUgMTQuNTlWMjBoNXYtMnoiLz48L3N2Zz4=" class="nav-icon" alt="首页">
+            <span>首页</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTE5LjUgMTYuNWEyLjUgMi41IDAgMDEtMi41IDIuNWEyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6bS0xMyAwYTIuNSAyLjUgMCAwMS0yLjUgMi41IDIuNSAyLjUgMCAwMS0yLjUtMi41IDIuNSAyLjUgMCAwMTIuNS0yLjUgMi41IDIuNSAwIDAxMi41IDIuNXptMTUgMGEyLjUgMi41IDAgMDEtMi41IDIuNSAyLjUgMi41IDAgMDEtMi41LTIuNSAyLjUgMi41IDAgMDEyLjUtMi41IDIuNSAyLjUgMCAwMTIuNSAyLjV6Ii8+PC9zdmc+" class="nav-icon" alt="订单">
+            <span>订单</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEyIDJDNy4wMyAyIDMgNi4wMyAzIDExczQuMDMgOSA5IDkgOS00LjAzIDktOS00LjAzLTktOS05em0wIDE2Yy0zLjg2IDAtNy0zLjE0LTctN3MzLjE0LTcgNy03IDcgMy4xNCA3IDctMy4xNCA3LTcgN3oiLz48Y2lyY2xlIGZpbGw9IiM4ODgiIGN4PSIxMiIgY3k9IjEyIiByPSI1Ii8+PC9zdmc+" class="nav-icon" alt="消息">
+            <span>消息</span>
+        </div>
+        <div class="nav-item">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzg4OCIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6bTAgMTQuMmMtMi41IDAtNC43MS0xLjI4LTYtMy4yMi4wMy0xLjk5IDQtMy4wOCA2LTMuMDggMS45OSAwIDUuOTcgMS4wOSA2IDMuMDgtMS4yOSAxLjk0LTMuNSAzLjIyLTYgMy4yMnoiLz48L3N2Zz4=" class="nav-icon" alt="我的">
+            <span>我的</span>
+        </div>
+    </div>
+</body>
+</html>
